@@ -61,7 +61,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
             myRef.child(noteId).setValue(noteClass);
 
-            Toast.makeText(this, "Note added !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "NoteAdapter added !", Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);

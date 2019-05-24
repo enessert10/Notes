@@ -9,12 +9,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class Note extends ArrayAdapter<NoteClass>{
+public class NoteAdapter extends ArrayAdapter<NoteClass>{
 
     private Activity context;
     List<NoteClass> notes;
 
-    public Note(Activity context, List<NoteClass> notes) {
+    public NoteAdapter(Activity context, List<NoteClass> notes) {
         super(context, R.layout.custom_view, notes);
         this.context = context;
         this.notes = notes;

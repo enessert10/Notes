@@ -101,7 +101,7 @@ public class NoteScreenActivity extends AppCompatActivity {
         NoteClass noteClass =new NoteClass(id,noteTitle,note,createdDate);
         reference.setValue(noteClass);
 
-        Toast.makeText(this, "Note updated!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "NoteAdapter updated!", Toast.LENGTH_SHORT).show();
 
         return true;
     }
@@ -112,7 +112,7 @@ public class NoteScreenActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(id);
         reference.removeValue();
 
-        Toast.makeText(this, "Note deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "NoteAdapter deleted", Toast.LENGTH_SHORT).show();
 
         return true;
     }
