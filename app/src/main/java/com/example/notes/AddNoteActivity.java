@@ -19,6 +19,7 @@ import java.util.UUID;
 public class AddNoteActivity extends AppCompatActivity {
 
     EditText etAddNote;
+    EditText etAddNoteTitle;
     TextView tvAddNoteCreatedDate;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference myRef;
@@ -29,6 +30,7 @@ public class AddNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
 
         etAddNote = findViewById(R.id.etAddNote);
+        etAddNoteTitle = findViewById(R.id.ettAddNoteTitle);
         tvAddNoteCreatedDate = findViewById(R.id.tvAddNoteCreatedDate);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -47,18 +49,22 @@ public class AddNoteActivity extends AppCompatActivity {
         tvAddNoteCreatedDate.setText(simpleDateFormat.format(createdDateNote));
 
         String note = etAddNote.getText().toString().trim();
+        String noteTitle = etAddNoteTitle.getText().toString().trim();
         String createdDate = tvAddNoteCreatedDate.getText().toString();
 
-        if(!TextUtils.isEmpty(note))
+        if(!TextUtils.isEmpty(note) && !TextUtils.isEmpty(noteTitle))
         {
 
             String noteId = myRef.push().getKey();
 
-            NoteClass noteClass = new NoteClass(noteId,note,createdDate);
+            NoteClass noteClass = new NoteClass(noteId,noteTitle,note,createdDate);
 
             myRef.child(noteId).setValue(noteClass);
 
             Toast.makeText(this, "Note added !", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
 
         }
         else
@@ -69,8 +75,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        startActivity(intent);
+
 
 
 

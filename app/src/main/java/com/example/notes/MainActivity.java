@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                NoteClass noteClass =noteList.get(position);
-               showUpdateDeleteDialog(noteClass.getNoteId(),noteClass.getNote());
+               showUpdateDeleteDialog(noteClass.getNoteId(),noteClass.getNoteTitle(),noteClass.getNote());
                 return true;
             }
         });
@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private boolean updateNote(String id,String note,String createdDate)
+    private boolean updateNote(String id,String noteTitle,String note,String createdDate)
     {
         noteList.clear();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(id);
 
-        NoteClass noteClass =new NoteClass(id,note,createdDate);
+        NoteClass noteClass =new NoteClass(id,noteTitle,note,createdDate);
         reference.setValue(noteClass);
 
         Toast.makeText(this, "Note updated!", Toast.LENGTH_SHORT).show();
@@ -144,13 +144,14 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void showUpdateDeleteDialog(final String noteId, final String note)
+    private void showUpdateDeleteDialog(final String noteId,final String noteTitle, final String note)
     {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_note_dialog, null);
         dialogBuilder.setView(dialogView);
 
+        final EditText etUpdateNoteTitle = dialogView.findViewById(R.id.etUpdateNoteTitle);
         final EditText etUpdateNote = dialogView.findViewById(R.id.etUpdateNote);
         final TextView tvUpdateDate = dialogView.findViewById(R.id.updatedDate);
         Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
@@ -164,20 +165,24 @@ public class MainActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                noteList.clear();
                 Date updateDateNote = new Date();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                 tvUpdateDate.setText(simpleDateFormat.format(updateDateNote));
 
-
+                String etUpdateNoteTitles = etUpdateNoteTitle.getText().toString();
                 String etUpdateNotes = etUpdateNote.getText().toString();
                 String tvUpdateDates = "Date of update: "+tvUpdateDate.getText().toString();
 
-                if(!TextUtils.isEmpty(etUpdateNotes))
+                if(!TextUtils.isEmpty(etUpdateNotes) && !TextUtils.isEmpty(etUpdateNoteTitles))
                 {
-                    updateNote(noteId,etUpdateNotes,tvUpdateDates);
+                    updateNote(noteId,etUpdateNoteTitles,etUpdateNotes,tvUpdateDates);
                     dialog.dismiss();
+                }else {
+                    Toast.makeText(MainActivity.this, "Please enter informations.", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
 

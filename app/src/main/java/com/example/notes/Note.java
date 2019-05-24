@@ -32,11 +32,12 @@ public class Note extends ArrayAdapter<NoteClass>{
         LayoutInflater layoutInflater = context.getLayoutInflater();
         View customView =layoutInflater.inflate(R.layout.custom_view,null,true);
 
-
+        TextView tvCustomNoteTitle = (TextView) customView.findViewById(R.id.tvCustomNoteTitle);
         TextView tvCustomNote = (TextView) customView.findViewById(R.id.tvCustomNote);
         TextView tvCustomCreatedDate = (TextView) customView.findViewById(R.id.tvCustomCreatedDate);
 
         NoteClass note = notes.get(position);
+        tvCustomNoteTitle.setText(note.getNoteTitle());
         tvCustomNote.setText(note.getNote());
         tvCustomCreatedDate.setText(note.getCreatedDate());
 

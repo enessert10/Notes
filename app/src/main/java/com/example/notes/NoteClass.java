@@ -2,6 +2,7 @@ package com.example.notes;
 
 public class NoteClass {
     public String noteId;
+    public String noteTitle;
     public String note;
     public String createdDate;
     public String shortDescription;
@@ -10,8 +11,9 @@ public class NoteClass {
 
     }
 
-    public NoteClass(String noteId,String note, String createdDate) {
+    public NoteClass(String noteId,String noteTitle,String note, String createdDate) {
         this.noteId = noteId;
+        this.noteTitle = noteTitle;
         this.note = note;
         this.createdDate = createdDate;
     }
@@ -21,12 +23,21 @@ public class NoteClass {
 
     }
 
+
     public String getNoteId() {
         return noteId;
     }
 
     public void setNoteId(String noteId) {
         this.noteId = noteId;
+    }
+
+    public String getNoteTitle() {
+        return noteTitle;
+    }
+
+    public void setNoteTitle(String noteTitle) {
+        this.noteTitle = noteTitle;
     }
 
     public String getNote() {

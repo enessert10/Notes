@@ -8,13 +8,25 @@
     tools:context=".AddNoteActivity">
 
     <EditText
+        android:id="@+id/ettAddNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:ems="10"
+        android:hint="Note Title..."
+        android:inputType="textPersonName" />
+
+    <EditText
         android:id="@+id/etAddNote"
         android:layout_width="match_parent"
-        android:layout_height="83dp"
+        android:layout_height="401dp"
         android:layout_margin="20dp"
         android:ems="10"
+        android:gravity="start"
         android:hint="Note ..."
-        android:inputType="textPersonName" />
+        android:inputType="textMultiLine" />
 
     <TextView
         android:id="@+id/tvAddNoteCreatedDate"
@@ -32,4 +44,5 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/add_note"
         android:onClick="add" />
+
 </LinearLayout>

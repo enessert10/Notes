@@ -5,14 +5,24 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/tvCustomNoteTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:text="Note Title"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/tvCustomNote"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:gravity="center_vertical"
-        android:text="TextView" />
+        android:text="Note" />
 
     <TextView
         android:id="@+id/tvCustomCreatedDate"
@@ -20,5 +30,5 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="TextView" />
+        android:text="Created Date" />
 </LinearLayout>
