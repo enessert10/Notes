@@ -61,7 +61,7 @@ public class NoteScreenActivity extends AppCompatActivity {
 
                 String etUpdateNoteTitles = etUpdateNoteTitle.getText().toString();
                 String etUpdateNotes = etUpdateNote.getText().toString();
-                String tvUpdateDates = "Date of update: "+tvUpdateDate.getText().toString();
+                String tvUpdateDates = getString(R.string.date_of_update)+tvUpdateDate.getText().toString();
 
                 if(!TextUtils.isEmpty(etUpdateNotes) && !TextUtils.isEmpty(etUpdateNoteTitles))
                 {
@@ -70,7 +70,7 @@ public class NoteScreenActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(NoteScreenActivity.this, "Please enter informations.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NoteScreenActivity.this, getString(R.string.enter_informations), Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -101,7 +101,7 @@ public class NoteScreenActivity extends AppCompatActivity {
         NoteClass noteClass =new NoteClass(id,noteTitle,note,createdDate);
         reference.setValue(noteClass);
 
-        Toast.makeText(this, "NoteAdapter updated!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.note_updated), Toast.LENGTH_SHORT).show();
 
         return true;
     }
@@ -112,7 +112,7 @@ public class NoteScreenActivity extends AppCompatActivity {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(id);
         reference.removeValue();
 
-        Toast.makeText(this, "NoteAdapter deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.note_deleted), Toast.LENGTH_SHORT).show();
 
         return true;
     }

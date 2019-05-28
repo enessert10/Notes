@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 NoteAdapter noteAdapter =new NoteAdapter(MainActivity.this,noteList);
-                tvNoteCount.setText(noteAdapter.getCount() + " Note");
+                tvNoteCount.setText(noteAdapter.getCount() + " "+getString(R.string.note));
                 listView.setAdapter(noteAdapter);
             }
 

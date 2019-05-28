@@ -61,7 +61,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
             myRef.child(noteId).setValue(noteClass);
 
-            Toast.makeText(this, "NoteAdapter added !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.note_added), Toast.LENGTH_SHORT).show();
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
@@ -69,7 +69,7 @@ public class AddNoteActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(this, "Please enter note", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.enter_note), Toast.LENGTH_LONG).show();
         }
 
 
