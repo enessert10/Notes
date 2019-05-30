@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class NoteAdapter extends ArrayAdapter<NoteClass>{
+public class NoteAdapter extends ArrayAdapter<NoteClass> {
 
     private Activity context;
     List<NoteClass> notes;
@@ -27,10 +27,10 @@ public class NoteAdapter extends ArrayAdapter<NoteClass>{
     }
 
     @Override
-    public View getView(int position,  View convertView,  ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater layoutInflater = context.getLayoutInflater();
-        View customView =layoutInflater.inflate(R.layout.custom_view,null,true);
+        View customView = layoutInflater.inflate(R.layout.custom_view, null, true);
 
         TextView tvCustomNoteTitle = (TextView) customView.findViewById(R.id.tvCustomNoteTitle);
         TextView tvCustomNote = (TextView) customView.findViewById(R.id.tvCustomNote);

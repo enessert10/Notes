@@ -39,8 +39,7 @@ public class AddNoteActivity extends AppCompatActivity {
 
     }
 
-    public void add(View view)
-    {
+    public void add(View view) {
 
 
         Date createdDateNote = new Date();
@@ -52,31 +51,23 @@ public class AddNoteActivity extends AppCompatActivity {
         String noteTitle = etAddNoteTitle.getText().toString().trim();
         String createdDate = tvAddNoteCreatedDate.getText().toString();
 
-        if(!TextUtils.isEmpty(note) && !TextUtils.isEmpty(noteTitle))
-        {
+
+        if (!TextUtils.isEmpty(note) && !TextUtils.isEmpty(noteTitle)) {
 
             String noteId = myRef.push().getKey();
 
-            NoteClass noteClass = new NoteClass(noteId,noteTitle,note,createdDate);
+            NoteClass noteClass = new NoteClass(noteId, noteTitle, note, createdDate);
 
             myRef.child(noteId).setValue(noteClass);
 
             Toast.makeText(this, getString(R.string.note_added), Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
 
-        }
-        else
-        {
+        } else {
             Toast.makeText(this, getString(R.string.enter_note), Toast.LENGTH_LONG).show();
         }
-
-
-
-
-
-
 
 
     }

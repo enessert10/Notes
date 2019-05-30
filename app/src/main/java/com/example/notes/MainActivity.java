@@ -14,9 +14,13 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvNoteCount;
 
 
-     AlertDialog dialog;
+    AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +51,16 @@ public class MainActivity extends AppCompatActivity {
         myRef = firebaseDatabase.getReference("Notes");
 
 
-
-
-
-
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 NoteClass noteClass = noteList.get(position);
-                Intent intent = new Intent(getApplicationContext(),NoteScreenActivity.class);
+                Intent intent = new Intent(getApplicationContext(), NoteScreenActivity.class);
 
-                intent.putExtra("noteId",noteClass.getNoteId());
-                intent.putExtra("noteTitle",noteClass.getNoteTitle());
-                intent.putExtra("note",noteClass.getNote());
+                intent.putExtra("noteId", noteClass.getNoteId());
+                intent.putExtra("noteTitle", noteClass.getNoteTitle());
+                intent.putExtra("note", noteClass.getNote());
 
                 startActivity(intent);
 
@@ -81,16 +78,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public void addNote (View view)
-    {
-        Intent intent = new Intent(getApplicationContext(),AddNoteActivity.class);
+    public void addNote(View view) {
+        Intent intent = new Intent(getApplicationContext(), AddNoteActivity.class);
         startActivity(intent);
     }
 
 
-    public void getDataForFirebase ()
-    {
+    public void getDataForFirebase() {
         noteList.clear();
 
 
@@ -99,16 +93,20 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-                for(DataSnapshot ds : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                     NoteClass notes =ds.getValue(NoteClass.class);
+
+                    NoteClass notes = ds.getValue(NoteClass.class);
 
                     noteList.add(notes);
+
+
                 }
 
-                NoteAdapter noteAdapter =new NoteAdapter(MainActivity.this,noteList);
-                tvNoteCount.setText(noteAdapter.getCount() + " "+getString(R.string.note));
+                Collections.reverse(noteList);
+                NoteAdapter noteAdapter = new NoteAdapter(MainActivity.this, noteList);
+                tvNoteCount.setText(noteAdapter.getCount() + " " + getString(R.string.note));
+
                 listView.setAdapter(noteAdapter);
             }
 

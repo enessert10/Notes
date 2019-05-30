@@ -7,17 +7,18 @@ public class NoteClass {
     public String createdDate;
     public String shortDescription;
 
-    public NoteClass(){
+    public NoteClass() {
 
     }
 
-    public NoteClass(String noteId,String noteTitle,String note, String createdDate) {
+    public NoteClass(String noteId, String noteTitle, String note, String createdDate) {
         this.noteId = noteId;
         this.noteTitle = noteTitle;
         this.note = note;
         this.createdDate = createdDate;
     }
-    public NoteClass(String noteId,String note) {
+
+    public NoteClass(String noteId, String note) {
         this.noteId = noteId;
         this.note = note;
 

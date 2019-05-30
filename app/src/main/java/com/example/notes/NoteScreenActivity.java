@@ -30,7 +30,6 @@ public class NoteScreenActivity extends AppCompatActivity {
     String noteId;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +50,6 @@ public class NoteScreenActivity extends AppCompatActivity {
         noteId = intent.getStringExtra("noteId");
 
 
-
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,15 +59,14 @@ public class NoteScreenActivity extends AppCompatActivity {
 
                 String etUpdateNoteTitles = etUpdateNoteTitle.getText().toString();
                 String etUpdateNotes = etUpdateNote.getText().toString();
-                String tvUpdateDates = getString(R.string.date_of_update)+tvUpdateDate.getText().toString();
+                String tvUpdateDates = getString(R.string.date_of_update) + tvUpdateDate.getText().toString();
 
-                if(!TextUtils.isEmpty(etUpdateNotes) && !TextUtils.isEmpty(etUpdateNoteTitles))
-                {
-                    updateNote(noteId,etUpdateNoteTitles,etUpdateNotes,tvUpdateDates);
+                if (!TextUtils.isEmpty(etUpdateNotes) && !TextUtils.isEmpty(etUpdateNoteTitles)) {
+                    updateNote(noteId, etUpdateNoteTitles, etUpdateNotes, tvUpdateDates);
 
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                }else {
+                } else {
                     Toast.makeText(NoteScreenActivity.this, getString(R.string.enter_informations), Toast.LENGTH_SHORT).show();
                 }
 
@@ -82,7 +79,7 @@ public class NoteScreenActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 deleteNote(noteId);
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
             }
@@ -91,14 +88,11 @@ public class NoteScreenActivity extends AppCompatActivity {
     }
 
 
-
-
-    private boolean updateNote(String id,String noteTitle,String note,String createdDate)
-    {
+    private boolean updateNote(String id, String noteTitle, String note, String createdDate) {
         //noteList.clear();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(id);
 
-        NoteClass noteClass =new NoteClass(id,noteTitle,note,createdDate);
+        NoteClass noteClass = new NoteClass(id, noteTitle, note, createdDate);
         reference.setValue(noteClass);
 
         Toast.makeText(this, getString(R.string.note_updated), Toast.LENGTH_SHORT).show();
@@ -106,8 +100,7 @@ public class NoteScreenActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean deleteNote (String id)
-    {
+    private boolean deleteNote(String id) {
         //noteList.clear();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notes").child(id);
         reference.removeValue();
